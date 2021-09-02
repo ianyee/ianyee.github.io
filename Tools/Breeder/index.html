@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script src="js/axiedetails.js"></script>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+<body onload="loadPrices()">
+
+<div class="header" id="header">
+    <h1>Breed Price Calculator</h1>
+</div>
+<div class="token_block">
+    <div class="token_field">
+        <div class="token_ico" id="axie_image"><img class="icon" src="data/axs.png"></div>
+        <div class="currency" >PHP</div><div class="token_price" id="axs_price"></div>
+    </div>
+    <div class="token_field">
+        <div class="token_ico" id="axie_image"><img class="icon" src="data/slp.png"></div>
+        <div class="currency" >PHP</div><div class="token_price" id="slp_price"></div>
+    </div>
+</div>
+    
+</br>
+<div class="fields" id="axie_info">
+<span class="column_txt">Axie 1 Id: </span><span class="column_txt">Axie 2 Id: </span></br>
+<input class="column_txt" type="text" id="axieID1">
+<input class="column_txt" type="text" id="axieID2">
+</div>
+
+<div class="fields" id="axie_submit">
+<input type="button" onclick="calculate()" value="Submit">
+</div>
+
+<div class="axie_img_block">
+    <div class="image" id="axie_image_1"></div>
+    <div class="image" id="axie_image_2"></div>
+</div>
+
+<div class="fields" id="axie_info">
+    <span class="column_txt" id="breedCount1"></span><span class="column_txt" id="breedCount2"></span>
+</div>
+    
+<div class="table_out" id="table_output"></div>
+
+</body>
+</html>

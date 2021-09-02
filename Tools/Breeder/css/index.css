@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-size: 14px;
+    background: rgb(175, 175, 175);
+  }
+
+.axie_img_block {
+    width: 500px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.image {
+    float:left;
+
+    margin: 0 auto;
+}
+
+
+.token_block {
+    width: 520px;
+    height: 80px;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header {
+    width: 50%;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.fields {
+    width: 500px;
+    height: 50px;
+    overflow: hidden;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.token_field {
+    float:left;
+    border-radius: 25px;
+    background: #73AD21;
+    padding: 5px;
+    padding-left: 20px;
+    margin: 5px;
+    width: 250px;
+    height: 50px;
+    justify-content: center;
+}
+
+.token_ico {
+    float:left;
+    width: 40px;
+    height: 40px; 
+}
+.currency {
+    float:left;
+    width: 80px;
+    height: 40px;
+    margin-top: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+.token_price {
+    float:left;
+    font-size:24px;
+    margin-top: 6px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.icon {
+    width: 40px;
+    height: 40px; 
+}
+
+.column_txt {
+    float:left;
+    width: 250px;
+    
+}
+
+.table_out {
+    width: 610px;
+    height: 200px;
+    overflow: hidden;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
