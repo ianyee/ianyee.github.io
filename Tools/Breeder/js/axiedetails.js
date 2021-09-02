@@ -1,3 +1,6 @@
+var currency_default = 'php';
+var isOngoing = false;
+
 async function getAxieDetails(id) {
     let response = await (await fetch("https://axieinfinity.com/graphql-server-v2/graphql?r=freak", {
       "headers": {
@@ -10,24 +13,26 @@ async function getAxieDetails(id) {
     return response.data.axie;
 }
 
-async function getPrice(token, currency) {
-  let response = await fetch("https://min-api.cryptocompare.com/data/price?fsym=" + token + "&tsyms=USD&tsyms=PHP&tsyms=ETH").then(function(response) {
+async function getPrice(token) {
+  let response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=" + token + "&vs_currencies=PHP%2CUSD%2CETH").then(function(response) {
     return response.json();
   });
   console.log(response);
-  return response;
+  return response[token];
 }
 
 async function loadPrices() {
-  let slp = await getPrice("SLP", "PHP");
-  document.getElementById("slp_price").innerText = slp['PHP'];
+  document.getElementById("currency_display_axs").innerText = currency_default.toUpperCase();
+  document.getElementById("currency_display_slp").innerText = currency_default.toUpperCase();
+  let slp = await getPrice("smooth-love-potion");
+  document.getElementById("slp_price").innerText = slp[currency_default];
   
-  let axs = await getPrice("AXS", "PHP");
-  document.getElementById("axs_price").innerText = axs['PHP'];
+  let axs = await getPrice("axie-infinity");
+  document.getElementById("axs_price").innerText = axs[currency_default];
 
 }
 
-function destroyContent(elementID)
+async function destroyContent(elementID)
 {
   var div = document.getElementById(elementID);
   while(div.firstChild) {
@@ -37,9 +42,15 @@ function destroyContent(elementID)
 
 async function calculate()
 {
-  destroyContent("axie_image_1")
-  destroyContent("axie_image_2")
-  destroyContent("table_output")
+  if(isOngoing) {
+    console.log("There is still an ongoing transaction");
+    return;
+  }
+  isOngoing = true;
+  await destroyContent("axie_image_1");
+  await destroyContent("axie_image_2");
+  await destroyContent("table_output");
+
   let id1 = document.getElementById("axieID1").value;
   let id2 = document.getElementById("axieID2").value;
   if(id1  === "" || id2 === "") {
@@ -49,6 +60,8 @@ async function calculate()
   let axie1 = await getAxieDetails(parseInt(id1));
   let axie2 = await getAxieDetails(parseInt(id2));
 
+  document.getElementById("currency_display_axs").innerText = currency_default.toUpperCase();
+  document.getElementById("currency_display_slp").innerText = currency_default.toUpperCase();
 
   var img1 = new Image(250, 200);
   img1.src = axie1.image
@@ -60,14 +73,14 @@ async function calculate()
   axie_image_2.appendChild(img2);
   document.getElementById("breedCount2").innerText = "BreedCount: " + axie2.breedCount;
 
-  let slp = await getPrice("SLP", "PHP");
-  document.getElementById("slp_price").innerText = slp['PHP'];
+  let slp = await getPrice("smooth-love-potion");
+  document.getElementById("slp_price").innerText = slp[currency_default];
   
-  let axs = await getPrice("AXS", "PHP");
-  document.getElementById("axs_price").innerText = axs['PHP'];
+  let axs = await getPrice("axie-infinity");
+  document.getElementById("axs_price").innerText = axs[currency_default];
 
   tableCreate(parseInt(axie1.breedCount), parseInt(axie2.breedCount), slp, axs);
-
+  isOngoing = false;
 }
 
 function validateAddress(address) {
@@ -159,9 +172,9 @@ function tableCreate(breedCount1, breedCount2, slpPrice, axsPrice) {
     console.log("Breed: " + getRequiredSlp(breedCount1 + i).toString() + " + " + getRequiredSlp(breedCount2 + i).toString());
     var slpRequired = getRequiredSlp(breedCount1 + i) + getRequiredSlp(breedCount2 + i);
     var axsRequired = 2;
-    var phpPrice = (slpRequired * parseFloat(slpPrice['PHP'])) + (axsRequired * parseFloat(axsPrice['PHP']));
-    var usdPrice = (slpRequired * parseFloat(slpPrice['USD'])) + (axsRequired * parseFloat(axsPrice['USD']));
-    var ethPrice = (slpRequired * parseFloat(slpPrice['ETH'])) + (axsRequired * parseFloat(axsPrice['ETH']));
+    var phpPrice = (slpRequired * parseFloat(slpPrice['php'])) + (axsRequired * parseFloat(axsPrice['php']));
+    var usdPrice = (slpRequired * parseFloat(slpPrice['usd'])) + (axsRequired * parseFloat(axsPrice['usd']));
+    var ethPrice = (slpRequired * parseFloat(slpPrice['eth'])) + (axsRequired * parseFloat(axsPrice['eth']));
     var entry = [i.toString(),
       slpRequired.toString(),
       axsRequired.toString(),
