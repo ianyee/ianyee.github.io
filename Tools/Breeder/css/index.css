@@ -55,7 +55,7 @@
 .token_field {
     float:left;
     border-radius: 25px;
-    background: #73AD21;
+    background: #1c4592;
     padding: 5px;
     padding-left: 20px;
     margin: 5px;
@@ -76,6 +76,7 @@
     margin-top: 12px;
     text-align: center;
     vertical-align: middle;
+    color: aliceblue;
 }
 .token_price {
     float:left;
@@ -85,6 +86,7 @@
     height: 40px;
     text-align: center;
     vertical-align: middle;
+    color: aliceblue;
 }
 
 .icon {
