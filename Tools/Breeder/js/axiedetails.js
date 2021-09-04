@@ -29,7 +29,7 @@ async function loadPrices() {
   
   let axs = await getPrice("axie-infinity");
   document.getElementById("axs_price").innerText = axs[currency_default];
-
+  document.getElementById("loader").style.display = "none";
 }
 
 async function destroyContent(elementID)
@@ -50,6 +50,10 @@ async function calculate()
   await destroyContent("axie_image_1");
   await destroyContent("axie_image_2");
   await destroyContent("table_output");
+  document.getElementById("breedCount1").innerText = "";
+  document.getElementById("breedCount2").innerText = "";
+  document.getElementById("loader").style.display = "initial";
+
 
   let id1 = document.getElementById("axieID1").value;
   let id2 = document.getElementById("axieID2").value;
@@ -60,8 +64,6 @@ async function calculate()
   let axie1 = await getAxieDetails(parseInt(id1));
   let axie2 = await getAxieDetails(parseInt(id2));
 
-  document.getElementById("currency_display_axs").innerText = currency_default.toUpperCase();
-  document.getElementById("currency_display_slp").innerText = currency_default.toUpperCase();
 
   var img1 = new Image(250, 200);
   img1.src = axie1.image
@@ -79,7 +81,10 @@ async function calculate()
   let axs = await getPrice("axie-infinity");
   document.getElementById("axs_price").innerText = axs[currency_default];
 
+  document.getElementById("currency_display_axs").innerText = currency_default.toUpperCase();
+  document.getElementById("currency_display_slp").innerText = currency_default.toUpperCase();
   tableCreate(parseInt(axie1.breedCount), parseInt(axie2.breedCount), slp, axs);
+  document.getElementById("loader").style.display = "none";
   isOngoing = false;
 }
 
