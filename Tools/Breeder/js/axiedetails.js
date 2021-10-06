@@ -145,19 +145,19 @@ function getRequiredSlp(count)
   switch(count)
   {
     case 0:
-      return 150;
+      return 150 * 2;
     case 1:
-      return 300;
+      return 300 * 2;
     case 2:
-      return 450;
+      return 450 * 2;
     case 3:
-      return 750;
+      return 750 * 2;
     case 4:
-      return 1200;
+      return 1200 * 2;
     case 5:
-      return 1950;
+      return 1950 * 2;
     case 6:
-      return 3150;      
+      return 3150 * 2;      
   }
   return 0;
 }
@@ -176,7 +176,7 @@ function tableCreate(breedCount1, breedCount2, slpPrice, axsPrice) {
     console.log("BreedCount: " + (breedCount1 + i).toString() + " + " + (breedCount2 + i).toString());
     console.log("Breed: " + getRequiredSlp(breedCount1 + i).toString() + " + " + getRequiredSlp(breedCount2 + i).toString());
     var slpRequired = getRequiredSlp(breedCount1 + i) + getRequiredSlp(breedCount2 + i);
-    var axsRequired = 2;
+    var axsRequired = 1;
     var phpPrice = (slpRequired * parseFloat(slpPrice['php'])) + (axsRequired * parseFloat(axsPrice['php']));
     var usdPrice = (slpRequired * parseFloat(slpPrice['usd'])) + (axsRequired * parseFloat(axsPrice['usd']));
     var ethPrice = (slpRequired * parseFloat(slpPrice['eth'])) + (axsRequired * parseFloat(axsPrice['eth']));
