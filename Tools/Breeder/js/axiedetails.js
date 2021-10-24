@@ -145,19 +145,19 @@ function getRequiredSlp(count)
   switch(count)
   {
     case 0:
-      return 150 * 2;
+      return 300;
     case 1:
-      return 900;
+      return 450;
     case 2:
-      return 1500;
+      return 750;
     case 3:
-      return 2400;
+      return 1200;
     case 4:
-      return 3900;
+      return 1950;
     case 5:
-      return 6300;
+      return 3150;
     case 6:
-      return 10200;      
+      return 5100;      
   }
   return 0;
 }
